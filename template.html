@@ -7,12 +7,22 @@
   padding: 10px;
   grid-row-gap: 50px;
 }
-
-
     </style>
 </head>
 
 <title>Gallery</title>
+
+{% if subdirectories|length > 0 %}
+<h1>Subdirectories</h1>
+<ul>
+    {% for subdirectory in subdirectories %}
+    <li><a href="{{ subdirectory }}/gallery.html">{{ subdirectory }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>All images</h1>
+
 <div class="grid-container">
     {% for image in images %}
     <div style="max-width: 300px;">
