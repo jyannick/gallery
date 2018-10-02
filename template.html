@@ -16,7 +16,7 @@
 <div class="grid-container">
     {% for image in images %}
     <div>
-        <img src="{{ image.path }}"/>
+        <img src="{{ image.path }}" style="max-width: 300px; height: auto;"/>
         <br/>
         <b>{{ image.file }}</b>
         <i>{{ ", ".join(image.tags) }}</i>
