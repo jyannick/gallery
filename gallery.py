@@ -9,7 +9,7 @@ dir_out = argv[1]
 images = list()
 for root, subdirs, files in os.walk(dir_in):
     for file in files:
-        if file.endswith(".gif"):
+        if file.endswith((".gif", ".bmp", ".jpg")):
             image = {"path": os.path.relpath(os.path.join(root, file), dir_out),
                      "tags": os.path.normpath(os.path.relpath(root, dir_out)).split(os.path.sep),
                      "file": file}
