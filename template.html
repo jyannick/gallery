@@ -15,7 +15,7 @@
 <title>Gallery</title>
 <div class="grid-container">
     {% for image in images %}
-    <div>
+    <div style="max-width: 300px;">
         <img src="{{ image.path }}" style="max-width: 300px; height: auto;"/>
         <br/>
         <b>{{ image.file }}</b>
