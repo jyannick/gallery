@@ -1,30 +1,65 @@
 <html>
 <head>
     <style>
-.image {
-  margin: 10px;
-  padding: 5px;
-  max-width: 300px;
-  border: solid;
-  float: left;
-}
+        .menu {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background-color: #333;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .menu li {
+            float: left;
+        }
+
+        .menu li a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .menu li a:hover {
+            background-color: #111;
+        }
+
+        .image-container {
+            padding-top: 100px;
+        }
+
+        .image {
+          margin: 10px;
+          padding: 5px;
+          max-width: 300px;
+          border: solid;
+          float: left;
+        }
     </style>
 </head>
 
 <title>Gallery</title>
 
 {% if subdirectories|length > 0 %}
-<h1>Subdirectories</h1>
+<div class="menu">
 <ul>
     {% for subdirectory in subdirectories %}
     <li><a href="{{ subdirectory }}/gallery.html">{{ subdirectory }}</a></li>
     {% endfor %}
 </ul>
+</div>
 {% endif %}
 
-<h1>All images</h1>
-
-<div>
+<div class="image-container">
     {% for image in images %}
     <div class="image">
         <img src="{{ image.path }}" style="max-width: 300px; height: auto;"/>
