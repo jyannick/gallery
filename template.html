@@ -49,15 +49,14 @@
 
 <title>Gallery</title>
 
-{% if subdirectories|length > 0 %}
 <div class="menu">
 <ul>
+    <li><a href="../gallery.html">parent directory</a></li>
     {% for subdirectory in subdirectories %}
     <li><a href="{{ subdirectory }}/gallery.html">{{ subdirectory }}</a></li>
     {% endfor %}
 </ul>
 </div>
-{% endif %}
 
 <div class="image-container">
     {% for image in images %}
