@@ -1,11 +1,12 @@
 <html>
 <head>
     <style>
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 10px;
-  grid-row-gap: 50px;
+.image {
+  margin: 10px;
+  padding: 5px;
+  max-width: 300px;
+  border: solid;
+  float: left;
 }
     </style>
 </head>
@@ -23,12 +24,13 @@
 
 <h1>All images</h1>
 
-<div class="grid-container">
+<div>
     {% for image in images %}
-    <div style="max-width: 300px;">
+    <div class="image">
         <img src="{{ image.path }}" style="max-width: 300px; height: auto;"/>
         <br/>
         <b>{{ image.file }}</b>
+        <br/>
         <i>{{ ", ".join(image.tags) }}</i>
     </div>
     {% endfor %}
