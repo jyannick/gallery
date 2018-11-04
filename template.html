@@ -1,12 +1,32 @@
 <html>
 <head>
     <style>
+
+        #top_menu {
+            top: 0;
+        }
+
+        #bottom_menu {
+            bottom: 0;
+        }
+
+        #title {
+            display: inline-block;
+            color: yellow;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        #active_page {
+            color: yellow;
+        }
+
         .menu {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background-color: #333;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            background-color: #333;
         }
 
         .menu ul {
@@ -19,13 +39,13 @@
 
         .menu li {
             float: left;
+            display: inline-block;
+            text-align: center;
+            padding: 14px 16px;
         }
 
         .menu li a {
-            display: inline-block;
             color: white;
-            text-align: center;
-            padding: 14px 16px;
             text-decoration: none;
         }
 
@@ -34,35 +54,44 @@
         }
 
         .image-container {
-            padding-top: 100px;
+            padding: 30px;
+        }
+
+        .image-widget {
+            margin: 10px;
+            padding: 5px;
+            max-width: 250px;
+            float: left;
+            background-color: #DCDCDC;
+            text-align: center;
         }
 
         .image {
-          margin: 10px;
-          padding: 5px;
-          max-width: 300px;
-          float: left;
-          background-color: #DCDCDC;
-          text-align: center;
+            max-width: 250px;
+            max-height: 250px;
         }
+
     </style>
 </head>
 
 <title>Gallery</title>
 
-<div class="menu">
-<ul>
-    <li><a href="../gallery.html">parent directory</a></li>
-    {% for subdirectory in subdirectories %}
-    <li><a href="{{ subdirectory }}/gallery.html">{{ subdirectory }}</a></li>
-    {% endfor %}
-</ul>
+<div id="top_menu" class="menu">
+    <ul>
+        {% if not top_level %}
+        <li><a href="../gallery_1.html">parent directory</a></li>
+        {% endif %}
+        <li id="title">{{title}}</li>
+        {% for subdirectory in subdirectories %}
+        <li><a href="{{ subdirectory }}/gallery_1.html">{{ subdirectory }}</a></li>
+        {% endfor %}
+    </ul>
 </div>
 
 <div class="image-container">
     {% for image in images %}
-    <div class="image">
-        <img src="{{ image.path }}" style="max-width: 300px; height: auto;"/>
+    <div class="image-widget">
+        <a href="{{ image.path }}"><img class="image" src="{{ image.path }}"/></a>
         <br/>
         <b>{{ image.file }}</b>
         <br/>
@@ -70,5 +99,34 @@
     </div>
     {% endfor %}
 </div>
+
+<div style="margin-bottom: 100px">
+</div>
+
+{% if pages|length > 1 %}
+<div id="bottom_menu" class="menu">
+    <ul>
+        {% if page_number-1 in pages %}
+        <li><a href="./gallery_{{page_number-1}}.html">previous page</a></li>
+        {% else %}
+        <li><i>previous page</i></li>
+        {% endif %}
+
+        {% for page in pages %}
+        {% if page == page_number %}
+        <li id="active_page">{{page}}</li>
+        {% else %}
+        <li><a href="./gallery_{{page}}.html">{{page}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_number+1 in pages %}
+        <li><a href="./gallery_{{page_number+1}}.html">next page</a></li>
+        {% else %}
+        <li><i>next page</i></li>
+        {% endif %}
+
+    </ul>
+</div>
+{% endif %}
 
 </html>
